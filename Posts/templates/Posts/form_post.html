@@ -1,0 +1,33 @@
+{% extends 'main.html'%}
+{% load static %}
+
+{% block title %} Creando POST {% endblock %}
+
+{% block content %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container">
+            <div class="col-8">
+                {% for field in form %}
+                <label class="form-label">{{field.label}}:</label>
+                <br>
+                {{form.media}}
+                {{field}}
+                <br>
+                {% endfor %}
+            <br>
+
+            {% if update == 1 %}
+           
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+
+            {% else %}
+           
+            <button type="submit" class="btn btn-primary">Crear</button>
+            {% endif %}
+        </div>
+    </form>
+
+
+{% endblock content %}
