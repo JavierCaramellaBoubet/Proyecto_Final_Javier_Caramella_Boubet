@@ -1,0 +1,61 @@
+{% extends 'main.html'%}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">Resultados de la busqueda de Blogs</h1>
+{% endblock %}
+
+{% block content %}
+
+{% if nombre %}
+
+<h2>LISTADO DE BLOGS</h2>
+<table>
+    <thead>
+        <tr>
+            
+            <th>Titulo</th>
+            <th>Subtitulo</th>
+            <th>Descripción</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+
+
+
+        {% for post in title %}
+        <tr>
+            
+            <td>
+                {{ post.title }}
+            </td>
+            <td>
+                {{ post.subtitulo }}
+            </td>
+            <td>
+                {{ post.description }}
+            </td>
+            <td>
+                {{ post.imagen_portada }}
+            </td>
+            <td>
+                {{ post.fecha_creacion }}
+            </td>
+            
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+
+<h2>NO HAY BLOGS QUE RESPONDAN A ESA BUSQUEDA</h2>
+
+{% endif %}
+
+
+
+{% endblock content %}

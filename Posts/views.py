@@ -1,6 +1,12 @@
 from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostForm
+
+from django.contrib import messages
+from django.http import HttpResponse
+
+from .forms import *
+
 # Create your views here.
 
 def home(request):
@@ -55,3 +61,21 @@ def nuestraEmpresa(request):
 
 
 ##########################################################################
+
+
+#def buscarProducto(request):
+#    return render(request, 'busquedaProducto.html')
+
+def buscarBlog(request):
+    return render(request, 'busquedaBlog.html')
+ 
+
+    
+def buscandoBlog(request):
+    blogIngresado= request.GET["nombre"]
+    if blogIngresado!="":
+        blog=Post.objects.filter(nombre__icontains=blogIngresado)
+        print(blog)
+        return render(request, "resultadoBusquedaBlog.html", {"nombre": nombre})
+    else:
+        return render(request, "busquedaBlog.html", {"mensaje": "POR FAVOR INGRESA UN BLOG PARA BUSCAR!!!"})    

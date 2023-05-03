@@ -1,0 +1,22 @@
+{% extends 'main.html'%}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">BUSQUEDA DE BLOGS</h1>
+{% endblock %}
+
+{% block content %}
+
+<h3>{{ mensaje }}</h3>
+
+<form action="{% url 'buscandoBlog' %}" method="GET"> 
+
+    <input type="text" name="nombre" id="nombre" placeholder="INSERTE BLOG">
+
+    <input type="submit" value="Buscar BLOG">
+
+
+</form>
+
+{% endblock content %}

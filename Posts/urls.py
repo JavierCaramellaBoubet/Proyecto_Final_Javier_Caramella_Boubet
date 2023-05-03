@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import *
 
 urlpatterns = [
     path('', views.home, name="home"),
@@ -9,6 +10,10 @@ urlpatterns = [
     path('update-post/<str:pk>/', views.updatePost, name="update-post"),
 
     path('nuestraEmpresa/',views.nuestraEmpresa, name= 'nuestraEmpresa'),
+
+    path('buscarBlog/', buscarBlog, name="buscarBlog"),
+    path('buscandoBlog/', buscandoBlog, name="buscandoBlog"),
+
 
     
 ]
