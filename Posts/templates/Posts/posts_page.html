@@ -17,7 +17,7 @@
 
 <div class="container">
   <form class="form-inline my-2 my-lg-0 mr-4" action="{% url 'search' %}">
-    <input class="form-control mr-sm-2" name="buscarBlog" type="search" placeholder="Ingrese Blog a buscar" aria-label="search">
+    <input class="form-control mr-sm-2" name="nombre" type="search" placeholder="Ingrese Blog a buscar" aria-label="search">
     <br>
     <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar BLOG de Interés</button>
   </form>
@@ -28,15 +28,14 @@
 
 
 
-
-
-
 <div class="container">
 
   <div class="row row-cols-auto">
 
   {% for post in posts %}
+  
   <div class="col-md">
+    
     <div class="card" style="width: 23rem;">
       <img src="{{post.imagen_portada.url}}" class="card-img-top" alt="...">
       <div class="card-body">

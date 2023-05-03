@@ -90,7 +90,7 @@ def buscandoBlog(request):
     nombre= request.GET["nombre"]
     if nombre!="":
             
-        nombre=Post.objects.filter(titleingresado__incontains = nombre)
+        nombre=Post.objects.filter(title__icontains = nombre)
         print(nombre)
         return render(request, "Posts/resultadoBusquedaBlog.html", {"nombre": nombre})
              
@@ -101,13 +101,29 @@ def buscandoBlog(request):
 
 
 def search(request):
+    
+    nombre= request.GET["nombre"]
+    if nombre!="":
+            
+        nombre=Post.objects.filter(title__icontains = nombre)
+        print(nombre)
+        return render(request, "Posts/resultadoBusquedaBlog.html", {"nombre": nombre})
+             
+    else:
+        
+        return render(request, "Posts/busquedaBlog.html", {"mensaje": "POR FAVOR INGRESA UN BLOG PARA BUSCAR!!!"})  
+
+
+
+
+"""
+def search(request):
     template_name= "Posts/post.html"
-    buscarBlog= request.GET["buscarBlog"]
-    Blog= Post.objects.filter(title__incontains = buscarBlog)
-    context= {'title':title}
+    buscarBlog= request.GET["nombre"]
+    Blog= Post.objects.filter(nombre__incontains = nombre)
+    context= {'nombre':nombre}
 
     return render(request, template_name,context)
 
 
-
-        
+"""
