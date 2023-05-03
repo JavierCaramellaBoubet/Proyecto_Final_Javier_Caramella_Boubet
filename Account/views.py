@@ -55,7 +55,7 @@ def login_request(request):
 
             if usuario is not None:
                 login(request, usuario)
-                return render(request, "main.html", {"mensaje": f"Usuario {usu} logueado correctamente"})
+                return render(request, "Account/main.html", {"mensaje": f"Usuario {usu} logueado correctamente"})
             else:
                 return render(request, "Account/login.html", {"form": form, "mensaje": "Usuario o contraseña incorrectos"})
         else:
@@ -101,6 +101,8 @@ def editarPerfil(request):
     else:
         form=UserEditForm(instance=usuario)
         return render(request, "Account/editarPerfil.html", {"form": form, "nombreusuario":usuario.username})
+    
+
 
 @login_required
 def agregarAvatar(request):

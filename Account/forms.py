@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 
 
 
-
 class RegistroUsuarioForm(UserCreationForm):
+    username = forms.CharField(label='username', max_length=30)
     email=forms.EmailField(label="Email usuario")
     password1=forms.CharField(label="Contraseña", widget=forms.PasswordInput)
     password2=forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
