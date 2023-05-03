@@ -25,13 +25,24 @@
           </ul>
       </div>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+          {% if user.is_authenticated %}
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'form_post'%}">Agregar Post</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'form_post'%}">Agregar Post</a>
           </li>
-          
-        </ul>
+          </ul>
+
+          <p>Bienvenido: {{ user.username }}</p>
+          <img src="{{ avatar }}" alt="Avatar" style="width:50px;height:50px;"/>
+          <a class="nav-link active" aria-current="page" href="{% url 'templates/editarPerfil' %}">EDITAR PERFIL</a>
+          <a class="btn btn-primary" href="{% url 'logout' %}">LOGOUT</a>
+          {% else %}
+          <a class="btn btn-primary" href="{% url 'login' %}">LOGIN</a>
+          <a class="btn btn-danger" href="{% url 'register' %}">REGISTER</a>
+          {% endif %}
+                  
       </div>
     </div>
   </nav>
