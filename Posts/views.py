@@ -63,19 +63,51 @@ def nuestraEmpresa(request):
 ##########################################################################
 
 
-#def buscarProducto(request):
-#    return render(request, 'busquedaProducto.html')
-
 def buscarBlog(request):
-    return render(request, 'busquedaBlog.html')
+    return render(request, 'Posts/busquedaBlog.html')
  
 
-    
+"""
+   
 def buscandoBlog(request):
     blogIngresado= request.GET["nombre"]
+   
     if blogIngresado!="":
-        blog=Post.objects.filter(nombre__icontains=blogIngresado)
+            
+        blog=Post.objects.filter(blogingresado__incontains = blogIngresado)
         print(blog)
-        return render(request, "resultadoBusquedaBlog.html", {"nombre": nombre})
+        return render(request, "resultadoBusquedaBlog.html", {"nombre": blog})        
+        
     else:
         return render(request, "busquedaBlog.html", {"mensaje": "POR FAVOR INGRESA UN BLOG PARA BUSCAR!!!"})    
+
+"""
+
+
+        
+def buscandoBlog(request):
+    
+    nombre= request.GET["nombre"]
+    if nombre!="":
+            
+        nombre=Post.objects.filter(titleingresado__incontains = nombre)
+        print(nombre)
+        return render(request, "Posts/resultadoBusquedaBlog.html", {"nombre": nombre})
+             
+    else:
+        
+        return render(request, "Posts/busquedaBlog.html", {"mensaje": "POR FAVOR INGRESA UN BLOG PARA BUSCAR!!!"})   
+    
+
+
+def search(request):
+    template_name= "Posts/post.html"
+    buscarBlog= request.GET["buscarBlog"]
+    Blog= Post.objects.filter(title__incontains = buscarBlog)
+    context= {'title':title}
+
+    return render(request, template_name,context)
+
+
+
+        

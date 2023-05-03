@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% block title %} Buscando BLOGS {% endblock %}
+
 {% block titulo %}
 <h1 class="mb-5">BUSQUEDA DE BLOGS</h1>
 {% endblock %}
@@ -12,9 +14,14 @@
 
 <form action="{% url 'buscandoBlog' %}" method="GET"> 
 
-    <input type="text" name="nombre" id="nombre" placeholder="INSERTE BLOG">
+    <br>
+    <div class="container">
 
-    <input type="submit" value="Buscar BLOG">
+        <input type="text" name="nombre" id="nombre" placeholder="INSERTE BLOG A BUSCAR">
+
+        <input type="submit" value="Buscar BLOG">
+
+    </div>
 
 
 </form>

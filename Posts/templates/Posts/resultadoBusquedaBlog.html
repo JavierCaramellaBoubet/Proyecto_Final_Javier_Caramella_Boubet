@@ -1,3 +1,4 @@
+
 {% extends 'main.html'%}
 
 {% load static %}
@@ -15,17 +16,20 @@
     <thead>
         <tr>
             
-            <th>Titulo</th>
-            <th>Subtitulo</th>
-            <th>Descripción</th>
+            <th> Titulo </th>
+            <th> Subtitulo </th>
+            <th> Descripción </th>
+            <th> imagen_portada </th>
+            <th> fecha_creacion </th>
             
         </tr>
     </thead>
     <tbody>
 
 
-
-        {% for post in title %}
+     
+      {% for post in nombre %}
+   
         <tr>
             
             <td>
@@ -37,6 +41,8 @@
             <td>
                 {{ post.description }}
             </td>
+           
+           
             <td>
                 {{ post.imagen_portada }}
             </td>
@@ -44,7 +50,7 @@
                 {{ post.fecha_creacion }}
             </td>
             
-            
+           
         </tr>
         {% endfor %}
     </tbody>
@@ -59,3 +65,4 @@
 
 
 {% endblock content %}
+

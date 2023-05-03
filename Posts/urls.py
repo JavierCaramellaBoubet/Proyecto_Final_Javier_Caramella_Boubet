@@ -14,6 +14,8 @@ urlpatterns = [
     path('buscarBlog/', buscarBlog, name="buscarBlog"),
     path('buscandoBlog/', buscandoBlog, name="buscandoBlog"),
 
+    path('search/', search, name="search"),
+
 
     
 ]
