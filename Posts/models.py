@@ -17,5 +17,5 @@ class Post(models.Model):
     
 
     def __str__(self):
-        texto = "{0} ({1})"
-        return texto.format(self.title,self.subtitulo)
+        texto = "{0} ({1})({2})"
+        return texto.format(self.title,self.subtitulo,self.fecha_creacion)
