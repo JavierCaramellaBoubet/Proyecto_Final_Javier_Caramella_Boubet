@@ -36,11 +36,16 @@
 
           <p>Bienvenido: {{ user.username }}</p>
           <img src="{{ avatar }}" alt="Avatar" style="width:50px;height:50px;"/>
-          <a class="nav-link active" aria-current="page" href="{% url 'templates/editarPerfil' %}">EDITAR PERFIL</a>
-          <a class="btn btn-primary" href="{% url 'logout' %}">LOGOUT</a>
+          <!-- <a class="nav-link active" aria-current="page" href="{% url 'editarPerfil' %}">EDITAR PERFIL</a> -->
+          <a class="nav-link active" aria-current="page" href="{% url 'editarPerfil' %}">EDITAR PERFIL</a>
+          <!-- <a class="btn btn-primary" href="{% url 'logout' %}">LOGOUT</a> -->
+          <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">LOGOUT</a>
           {% else %}
-          <a class="btn btn-primary" href="{% url 'login' %}">LOGIN</a>
-          <a class="btn btn-danger" href="{% url 'register' %}">REGISTER</a>
+          <!-- <a class="btn btn-primary" href="{% url 'login' %}">LOGIN</a> -->
+          <a class="nav-link active" aria-current="page" href="{% url 'login' %}">LOGIN</a>
+          <!-- <a class="btn btn-danger" href="{% url 'register' %}">REGISTER</a>  -->
+          <a class="btn btn-danger" aria-current="page" href="{% url 'register' %}">REGISTER</a>
+
           {% endif %}
                   
       </div>

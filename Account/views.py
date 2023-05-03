@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Curso, Profesor, Estudiante, Avatar
-from .forms import ProfesorForm, RegistroUsuarioForm, UserEditForm, AvatarForm
+from .models import Avatar
+from .forms import RegistroUsuarioForm, UserEditForm, AvatarForm
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -15,18 +15,24 @@ from django.contrib.auth.mixins import LoginRequiredMixin #para vistas basadas e
 # Create your views here.
 
 
-
     
+def obtenerAvatar(request):
+
+    avatares=Avatar.objects.filter(user=request.user.id)
+    if len(avatares)!=0:
+        return avatares[0].imagen.url
+    else:
+        return "/media/avatars/avatarpordefecto.png"
 
 
-#def inicioApp(request):
 
-#    return render(request, "AppCoder/inicio.html", {"avatar":obtenerAvatar(request)})
+def inicio(request):
+    return HttpResponse("Bienvenido a la pagina principal")
 
 
 def inicioApp(request):
 
-    return render(request, "templates/main.html", {"avatar":obtenerAvatar(request)})
+    return render(request, "Account/inicio.html", {"avatar":obtenerAvatar(request)})
 
 
 # vistas basadas en clases:
@@ -36,26 +42,28 @@ def inicioApp(request):
 #login logout register
 
 def login_request(request):
-    if request.method=="POST":
-        form=AuthenticationForm(request, data=request.POST)
-        
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+
         if form.is_valid():
-            info=form.cleaned_data
-            
-            usu=info["username"]
-            clave=info["password"]
-            usuario=authenticate(username=usu, password=clave)#verifica si el usuario existe, si existe, lo devuelve, y si no devuelve None 
-            
+            info = form.cleaned_data
+
+            usu = info["username"]
+            clave = info["password"]
+            # verifica si el usuario existe, si existe, lo devuelve, y si no devuelve None
+            usuario = authenticate(username=usu, password=clave)
+
             if usuario is not None:
                 login(request, usuario)
-                return render(request, "templates/main.html", {"mensaje":f"Usuario {usu} logueado correctamente"})
+                return render(request, "main.html", {"mensaje": f"Usuario {usu} logueado correctamente"})
             else:
-                return render(request, "Account/login.html", {"form": form, "mensaje":"Usuario o contraseña incorrectos"})
+                return render(request, "Account/login.html", {"form": form, "mensaje": "Usuario o contraseña incorrectos"})
         else:
-            return render(request, "Account/login.html", {"form": form, "mensaje":"Usuario o contraseña incorrectos"})
+            return render(request, "Account/login.html", {"form": form, "mensaje": "Usuario o contraseña incorrectos"})
     else:
-        form=AuthenticationForm()
+        form = AuthenticationForm()
         return render(request, "Account/login.html", {"form": form})
+
 
 
 
@@ -66,7 +74,7 @@ def register(request):
         if form.is_valid():
             username= form.cleaned_data.get("username")
             form.save()
-            return render(request, "templates/main.html", {"mensaje":f"Usuario {username} creado correctamente"})
+            return render(request, "Account/inicio.html", {"mensaje":f"Usuario {username} creado correctamente"})
         else:
             return render(request, "Account/register.html", {"form": form, "mensaje":"Error al crear el usuario"})
     else:
@@ -87,7 +95,7 @@ def editarPerfil(request):
             usuario.first_name=info["first_name"]
             usuario.last_name=info["last_name"]
             usuario.save()
-            return render(request, "templates/main.html", {"mensaje":f"Usuario {usuario.username} editado correctamente"})
+            return render(request, "Account/inicio.html", {"mensaje":f"Usuario {usuario.username} editado correctamente"})
         else:
             return render(request, "Account/editarPerfil.html", {"form": form, "nombreusuario":usuario.username})
     else:
@@ -105,7 +113,7 @@ def agregarAvatar(request):
             if len(avatarViejo)>0:
                 avatarViejo[0].delete()
             avatar.save()
-            return render(request, "templates/main.html", {"mensaje":f"Avatar agregado correctamente", "avatar":obtenerAvatar(request)})
+            return render(request, "Account/inicio.html", {"mensaje":f"Avatar agregado correctamente", "avatar":obtenerAvatar(request)})
         else:
             return render(request, "Account/agregarAvatar.html", {"form": form, "usuario": request.user, "mensaje":"Error al agregar el avatar"})
     else:
