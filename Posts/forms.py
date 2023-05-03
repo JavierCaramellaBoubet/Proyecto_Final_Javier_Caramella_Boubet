@@ -14,3 +14,5 @@ class PostForm(ModelForm):
         self.fields['title'].widget.attrs.update({'class': 'form-control'})
         self.fields['subtitulo'].widget.attrs.update({'class': 'form-control'})
         self.fields['imagen_portada'].widget.attrs.update({'class': 'form-control'})
+        #self.fields['fecha_creacion'].widget.attrs.update({'class': 'form-control'})
+        
