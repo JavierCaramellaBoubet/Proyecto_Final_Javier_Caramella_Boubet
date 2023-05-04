@@ -21,4 +21,21 @@ class Post(models.Model):
         #texto = "{0} ({1})({2})({3})({4})({5})"
         return texto.format(self.title,self.subtitulo,self.fecha_creacion)
         #return texto.format(self.title,self.subtitulo,self.description,self.imagen_portada,self.id,self.fecha_creacion)
-    
+
+
+
+class Comment(models.Model):
+    post= models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments') 
+    name = models.CharField(max_length=100)
+    email = models.EmailField() 
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    content= models.TextField()
+    active= models.BooleanField(default=False)
+
+    def __str__(self):
+        #return f"Comentario de {name} {content}"
+        texto = "{0} ({1})"
+        #texto = "{0} ({1})({2})({3})({4})({5})"
+        return texto.format(self.name,self.content)
+        #return texto.format(self.title,self.subtitulo,self.description,self.imagen_portada,self.id,self.fecha_creacion)
+

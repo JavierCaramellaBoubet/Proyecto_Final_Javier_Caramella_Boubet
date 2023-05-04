@@ -1,27 +1,36 @@
-{% extends "main.html" %}
-
+{% extends 'main.html'%}
 {% load static %}
 
-{% block titulo %}
-<h1 class="mb-5">EDITANDO USUARIO: {{ nombreusuario }} </h1>
-{% endblock %}
+{% block title %} Editar Perfil {% endblock %}
 
-{% block contenido_que_cambia %}
+{% block content %}
 
-<h3>{{ mensaje }}</h3>
+            {% block titulo %}
+            <h1 class="mb-5">EDITANDO USUARIO: {{ usuario.username }} </h1>
+            {% endblock %}
 
-<form action="{% url 'editarPerfil'  %}" method="POST"> {% csrf_token %}
+            {% block contenido_que_cambia %}
 
-    <table>
-    
-        {{ form.as_table }}
-    
-    </table>
-    
-    <input type="submit" value="MODIFICAR USUARIO">
-    
-    
-    </form>
+            <h3>{{ mensaje }}</h3>
+
+            <form action="{% url 'editarPerfil'  %}" method="POST"> 
+                    {% csrf_token %}
+
+                <table>
+                
+                    {{ form.as_table }}
+                
+                </table>
+                
+                <input type="submit" value="MODIFICAR USUARIO">
+                
+                
+                </form>
 
 
-{% endblock %}
+            {% endblock %}
+
+
+                  
+
+{% endblock content %}

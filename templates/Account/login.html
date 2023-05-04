@@ -1,29 +1,34 @@
-{% extends "main.html" %}
-
+{% extends 'main.html'%}
 {% load static %}
 
-{% block titulo %}
-<h1 class="mb-5">FORMULARIO DE INGRESO</h1>
-{% endblock %}
+{% block title %} LOGIN DE USUARIOS {% endblock %}
 
-{% block contenido_que_cambia %}
+{% block content %}
 
-<h3>{{ mensaje }}</h3>
+        {% block titulo %}
+        <h1 class="mb-5">LOGIN</h1>
+        {% endblock %}
 
-<form action="{% url 'login' %}" method="POST"> {% csrf_token %}
+        {% block contenido_que_cambia %}
 
-    <table>
+        <h3>{{ mensaje }}</h3>
 
-        {{ form.as_table }}
-    
-    </table>
+        <form action="{% url 'login' %}" method="POST"> 
+            {% csrf_token %}
 
-    <input type="submit" value="INGRESAR">
+            <table>
+
+                {{ form.as_table }}
+
+            </table>
+
+            <input type="submit" value="INGRESAR">
 
 
+        </form>
 
 
-</form>
+        {% endblock %}
+           
 
-
-{% endblock %}
+{% endblock content %}

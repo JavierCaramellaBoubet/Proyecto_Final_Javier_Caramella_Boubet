@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 
 from django.contrib import messages
 from django.http import HttpResponse
@@ -52,6 +52,29 @@ def updatePost(request,pk):
 
     context = {"form":form, "update":update}
     return render(request,'Posts/form_post.html', context)
+
+###########################################################################
+
+def post_detail(request,post_id):
+    post= Post.objects.get(id=post_id)
+
+    comments= post.comments.filter(active=True)
+
+    if request.method == 'POST':     #Esto significa que el usuario hizo o está haciendo un comentario
+        form= CommentForm(request.POST)
+
+        if form.is_valid():
+            new_form= form.save(commit=False) #Para guardar el Formulario cuando el usuario hace click y no cuando está escribiendo. 
+            new_form.post= post
+            new_form.save()
+        else:
+            form= CommentForm
+
+
+
+    return render(request,'post.html', {'post':post, 'comments':comments, 'form':form})        
+
+
 
 
 ##########################################################################
@@ -115,15 +138,4 @@ def search(request):
 
 
 
-
-"""
-def search(request):
-    template_name= "Posts/post.html"
-    buscarBlog= request.GET["nombre"]
-    Blog= Post.objects.filter(nombre__incontains = nombre)
-    context= {'nombre':nombre}
-
-    return render(request, template_name,context)
-
-
-"""
+#########################################################################################

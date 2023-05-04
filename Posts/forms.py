@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Post
+from .models import Post, Comment
 
 class PostForm(ModelForm):
     class Meta:
@@ -15,4 +15,13 @@ class PostForm(ModelForm):
         self.fields['subtitulo'].widget.attrs.update({'class': 'form-control'})
         self.fields['imagen_portada'].widget.attrs.update({'class': 'form-control'})
         #self.fields['fecha_creacion'].widget.attrs.update({'class': 'form-control'})
-        
+
+
+
+
+class CommentForm(ModelForm):
+    class Meta:
+        model= Comment
+        fields= ('name','email','content','active')
+
+
