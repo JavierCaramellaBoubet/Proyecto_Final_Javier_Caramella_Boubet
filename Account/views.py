@@ -55,7 +55,7 @@ def login_request(request):
 
             if usuario is not None:
                 login(request, usuario)
-                return render(request, "Account/main.html", {"mensaje": f"Usuario {usu} logueado correctamente"})
+                return render(request, "Account/inicio.html", {"mensaje": f"Usuario {usu} logueado correctamente"})
             else:
                 return render(request, "Account/login.html", {"form": form, "mensaje": "Usuario o contraseña incorrectos"})
         else:
@@ -80,6 +80,9 @@ def register(request):
     else:
         form= RegistroUsuarioForm()
         return render(request, "Account/register.html", {"form": form})
+
+
+
 
 @login_required
 def editarPerfil(request):
@@ -121,3 +124,4 @@ def agregarAvatar(request):
     else:
         form=AvatarForm()
         return render(request, "Account/agregarAvatar.html", {"form": form, "usuario": request.user, "avatar":obtenerAvatar(request)})
+
