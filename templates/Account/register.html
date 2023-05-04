@@ -1,5 +1,3 @@
-{% extends "AppCoder/padre.html" %}
-
 {% load static %}
 
 {% block titulo %}
@@ -10,7 +8,8 @@
 
 <h3>{{ mensaje }}</h3>
 
-<form action="{% url 'register' %}" method="POST"> {% csrf_token %}
+<form action="{% url 'register' %}" method="POST">
+    {% csrf_token %}
 
     <table>
 
