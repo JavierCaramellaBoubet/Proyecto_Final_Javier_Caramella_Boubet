@@ -19,9 +19,29 @@ class PostForm(ModelForm):
 
 
 
+
+#class CommentForm(ModelForm):
+#    class Meta:
+#        model= Comment
+#        fields= ('name','email','content','active')     
+
+
+
 class CommentForm(ModelForm):
     class Meta:
-        model= Comment
-        fields= ('name','email','content','active')
+        model = Comment
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super(CommentForm, self).__init__(*args, **kwargs)
+
+
+        self.fields['name'].widget.attrs.update({'class': 'form-control'})
+        self.fields['email'].widget.attrs.update({'class': 'form-control'})
+        self.fields['content'].widget.attrs.update({'class': 'form-control'})
+        self.fields['active'].widget.attrs.update({'class': 'form-control'})        
+
+
+
 
 

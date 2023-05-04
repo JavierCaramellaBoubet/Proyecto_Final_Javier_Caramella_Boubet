@@ -3,7 +3,7 @@ from .models import Post
 from .forms import PostForm, CommentForm
 
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect 
 
 from .forms import *
 
@@ -67,12 +67,13 @@ def post_detail(request,post_id):
             new_form= form.save(commit=False) #Para guardar el Formulario cuando el usuario hace click y no cuando está escribiendo. 
             new_form.post= post
             new_form.save()
+            return HttpResponseRedirect("")
         else:
             form= CommentForm
 
 
-
-    return render(request,'post.html', {'post':post, 'comments':comments, 'form':form})        
+    #return render(request,'post.html', {'post':post, 'comments':comments, 'form':form})
+    return render(request,'Post/post_detail.html', {'post':post, 'comments':comments, 'form':form})     
 
 
 

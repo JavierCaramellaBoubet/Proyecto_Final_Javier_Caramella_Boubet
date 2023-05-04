@@ -1,0 +1,48 @@
+
+<!-- ESTE HTML NO LO ESTAOY USANDO -->
+
+
+{% extends 'main.html'%}
+{% load static %}
+
+{% block title %} COMENTANDO {% endblock %}
+
+{% block content %}
+
+    <div>
+
+
+
+
+        <form method="post" action=""> 
+            {% csrf_token %}
+        
+            {{ form.as_p }}
+        
+            <br>        
+        
+            <input type="text" name="comentario"> <!-- Agrega un nombre al campo de entrada -->
+        
+            <input type="submit" name="enviar" value="Comentar">
+        
+        </form>  
+        
+        <tbody>
+        
+            {% for comentario in comments %}
+        
+            <p> {{ comentario.name }} </p>
+            <p> {{ comentario.content }} </p>
+        
+        
+            {% endfor %}
+        
+        </tbody>
+
+
+    </div>
+
+
+{% endblock content %}
+
+

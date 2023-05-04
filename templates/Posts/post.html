@@ -37,50 +37,33 @@
 
     <div>
 
-<!--
 
-        <form method="post" enctype="multipart/form-data"> 
+
+
+        <form method="post" action=""> 
             {% csrf_token %}
-
+        
             {{ form.as_p }}
-
-            <br>                    
-
-                {% for comentario in comments %}
-
-                <p> {{ comentario.name }} </p>
-                <p> {{ comentario.content }} </p>
-
-               
-                {% endfor %}
-
-                <input type="submit" name="enviar" value="comentar">
-        </form>       
--->
-
-    <form method="post" action=""> 
-        {% csrf_token %}
-
-        {{ form.as_p }}
-
-        <br>        
-
-    </form>  
-
-    <tbody>
-    
-        {% for comentario in comments %}
-
-        <p> {{ comentario.name }} </p>
-        <p> {{ comentario.content }} </p>
-
-       
-        {% endfor %}
-
-        <input type="submit" name="enviar" value="comentar">
-
-
-    </tbody>
+        
+            <br>        
+        
+            <input type="text" name="comentario"> <!-- Agrega un nombre al campo de entrada -->
+        
+            <input type="submit" name="enviar" value="Comentar">
+        
+        </form>  
+        
+        <tbody>
+        
+            {% for comentario in comments %}
+        
+            <p> {{ comentario.name }} </p>
+            <p> {{ comentario.content }} </p>
+        
+        
+            {% endfor %}
+        
+        </tbody>
 
 
         </div>
@@ -89,4 +72,3 @@
 
 
 {% endblock content %}
-
