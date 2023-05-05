@@ -22,7 +22,7 @@ def obtenerAvatar(request):
     if len(avatares)!=0:
         return avatares[0].imagen.url
     else:
-        return "/media/avatars/avatarpordefecto.png"
+        return "/media/avatars/avatar_por_defecto.png"
 
 
 
@@ -32,7 +32,10 @@ def inicio(request):
 
 def inicioApp(request):
 
+    avatar= Avatar.objects.filter(user=request.user.id)[0].imagen.url
+
     return render(request, "Account/inicio.html", {"avatar":obtenerAvatar(request)})
+
 
 
 # vistas basadas en clases:
@@ -101,7 +104,7 @@ def register(request):   # ESTE ES UN FORMULARIO BASICO POR DEFECTO
 
 #######################################################################################################################
 
-@login_required
+#@login_required
 def editarPerfil(request):
     usuario=request.user
 
@@ -124,7 +127,7 @@ def editarPerfil(request):
     
 
 
-@login_required
+#@login_required
 def agregarAvatar(request):
     if request.method=="POST":
         form=AvatarForm(request.POST, request.FILES)

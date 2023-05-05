@@ -33,12 +33,15 @@
           <a class="nav-link active" aria-current="page" href="{% url 'form_post'%}">Agregar Post</a>
           </li>
           </ul>
-
          
           <img src="{{ avatar }}" alt="Avatar" style="width:50px;height:50px;"/>
+
           <!-- <a class="nav-link active" aria-current="page" href="{% url 'editarPerfil' %}">EDITAR PERFIL</a> -->
           <a class="nav-link active" aria-current="page" href="{% url 'editarPerfil' %}">EDITAR PERFIL</a>
           <!-- <a class="btn btn-primary" href="{% url 'logout' %}">LOGOUT</a> -->
+
+          <p> Bienvenido: {{ user.username }} </p>
+
           <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">LOGOUT</a>
          
           <!-- <a class="btn btn-primary" href="{% url 'login' %}">LOGIN</a> -->

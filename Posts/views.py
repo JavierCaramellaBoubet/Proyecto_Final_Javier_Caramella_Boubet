@@ -5,6 +5,9 @@ from .forms import PostForm, CommentForm
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect 
 
+from django.contrib.auth.decorators import login_required #para vistas basadas en funciones DEF  
+from django.contrib.auth.mixins import LoginRequiredMixin #para vistas basadas en clases CLASS 
+
 from .forms import *
 
 # Create your views here.
@@ -19,6 +22,8 @@ def post(request, pk):
     context={'post':post}
     return render(request, 'Posts/post.html',context)
 
+
+#@login_required
 def formulario(request):
     form = PostForm()
     if request.method == 'POST':
@@ -30,6 +35,8 @@ def formulario(request):
     context={'form':form}
     return render(request, 'Posts/form_post.html', context)
 
+
+#@login_required
 def deletePost (request,pk):
     post = Post.objects.get(id=pk)
     if request.method == 'POST':
@@ -40,6 +47,8 @@ def deletePost (request,pk):
 
     return render(request,'delete_template.html', context)
 
+
+#@login_required
 def updatePost(request,pk):
     post = Post.objects.get(id=pk)
     form = PostForm(instance=post)
@@ -55,6 +64,7 @@ def updatePost(request,pk):
 
 ###########################################################################
 
+#@login_required
 def post_detail(request, post_id):
     post = Post.objects.get(id=post_id)
     comments = post.comments.filter(active=True)
