@@ -30,7 +30,8 @@ urlpatterns = [
 
     path("login/", login_request, name="login"),
     path("register/", register, name="register"),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    #path('logout/', LogoutView.as_view(template_name="Account/logout.html"), name='logout'),
+    path('logout/', LogoutView.as_view(template_name="Posts/inicioApp.html"), name='logout'),
     path('editarPerfil/', editarPerfil, name='editarPerfil'),
     path('agregarAvatar/', agregarAvatar, name='agregarAvatar')
     

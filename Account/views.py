@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from django.urls import reverse_lazy
 
-from django.contrib.auth.forms import  UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate
 
 from django.contrib.auth.decorators import login_required #para vistas basadas en funciones DEF  
@@ -65,7 +65,7 @@ def login_request(request):
         return render(request, "Account/login.html", {"form": form})
 
 
-
+###################################################################################################################
 
 
 def register(request):
@@ -80,9 +80,26 @@ def register(request):
     else:
         form= RegistroUsuarioForm()
         return render(request, "Account/register.html", {"form": form})
+    
 
 
+"""
+def register(request):   # ESTE ES UN FORMULARIO BASICO POR DEFECTO
+    if request.method=="POST":
+        form= UserCreationForm(request.POST)
+        if form.is_valid():
+            username= form.cleaned_data.get("username")
+            form.save()
+            return render(request, "Account/inicio.html", {"mensaje":f"Usuario {username} creado correctamente"})
+        else:
+            return render(request, "Account/register.html", {"form": form, "mensaje":"Error al crear el usuario"})
+    else:
+        form= UserCreationForm()
+        return render(request, "Account/register.html", {"form": form})   
 
+"""
+
+#######################################################################################################################
 
 @login_required
 def editarPerfil(request):

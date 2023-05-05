@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        {% load static %}
+        <meta charset="utf-12" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Landing Page - Start Bootstrap Theme</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'AppCoder/css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="{% url 'home'%}">Posts</a>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                
+                      <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                          <div class="container">
+                            <li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="{% url 'nuestraEmpresa' %}"> -Nuestra Empresa-  <br> Ayudanos a Ayudarte</a>
+                            </li>
+                          </div>
+                          </ul>
+                      </div>
+                
+                      <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                          <div class="container">
+                            <li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="{% url 'buscarBlog' %}"> BUSCAR BLOG </a>
+                            </li>
+                          </div>
+                          </ul>
+                      </div>
+                
+                         
+                
+                          <div class="collapse navbar-collapse" id="navbarNav">
+                          <ul class="navbar-nav">
+                          <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="{% url 'form_post'%}">Agregar Post</a>
+                          </li>
+                          </ul>
+                
+                         
+                          <img src="{{ avatar }}" alt="Avatar" style="width:50px;height:50px;"/>
+                          <!-- <a class="nav-link active" aria-current="page" href="{% url 'editarPerfil' %}">EDITAR PERFIL</a> -->
+                          <a class="nav-link active" aria-current="page" href="{% url 'editarPerfil' %}">EDITAR PERFIL</a>
+                          <!-- <a class="btn btn-primary" href="{% url 'logout' %}">LOGOUT</a> -->
+                          <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">LOGOUT</a>
+                         
+                          <!-- <a class="btn btn-primary" href="{% url 'login' %}">LOGIN</a> -->
+                          <a class="nav-link active" aria-current="page" href="{% url 'login' %}">LOGIN</a>
+                          <!-- <a class="btn btn-danger" href="{% url 'register' %}">REGISTER</a>  -->
+                          <a class="btn btn-danger" aria-current="page" href="{% url 'register' %}">REGISTER</a>
+            </div>
+        </nav>
+                            <!-- Masthead-->
+                            <header class="masthead">
+                                <div class="container position-relative">
+                                    <div class="row justify-content-center">
+                                        <div class="col-xl-6">
+                                            <div class="text-center text-white">
+                                                <!-- Page heading-->
+                                                {% block titulo %}
+
+                                                {% endblock %}
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="container">
+                            {% block contenido_que_cambia %}
+                            {% endblock %}
+                            </div>
+        
+
+        <!-- Footer-->
+        <footer class="footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2022. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item me-4">
+                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item me-4">
+                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

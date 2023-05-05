@@ -55,22 +55,21 @@ def updatePost(request,pk):
 
 ###########################################################################
 
-def post_detail(request,post_id):
-    post= Post.objects.get(id=post_id)
-    comments= post.comments.filter(active=True)
+def post_detail(request, post_id):
+    post = Post.objects.get(id=post_id)
+    comments = post.comments.filter(active=True)
 
     if request.method == 'POST':
         form = CommentForm(request.POST)
-
         if form.is_valid():
             new_comment = form.save(commit=False)
             new_comment.post = post
             new_comment.save()
             return HttpResponseRedirect("")
     else:
-        form = CommentForm()
+        form = CommentForm() # asignar una instancia del formulario vacío
 
-    return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'form': form})  
+    return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'form': form})
 
 
 
