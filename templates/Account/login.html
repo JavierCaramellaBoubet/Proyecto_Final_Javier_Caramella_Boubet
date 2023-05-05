@@ -3,32 +3,26 @@
 
 {% block title %} LOGIN DE USUARIOS {% endblock %}
 
-{% block content %}
 
-        {% block titulo %}
-        <h1 class="mb-5">LOGIN</h1>
-        {% endblock %}
 
         {% block contenido_que_cambia %}
 
-        <h3>{{ mensaje }}</h3>
+            <h3>{{ mensaje }}</h3>
 
-        <form action="{% url 'login' %}" method="POST"> 
-            {% csrf_token %}
+            <form action="{% url 'login' %}" method="POST"> 
+                {% csrf_token %}
 
-            <table>
+                <table>
 
-                {{ form.as_table }}
+                    {{ form.as_table }}
 
-            </table>
+                </table>
 
-            <input type="submit" value="INGRESAR">
-
-
-        </form>
+                <input type="submit" value="INGRESAR">
 
 
-        {% endblock %}
-           
+            </form>
+
+          
 
 {% endblock content %}

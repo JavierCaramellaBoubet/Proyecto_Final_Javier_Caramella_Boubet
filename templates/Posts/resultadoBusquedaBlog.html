@@ -1,5 +1,3 @@
-
-
 {% extends 'main.html'%}
 
 {% load static %}
@@ -40,6 +38,24 @@
         {% else %}
             <br>
             <h1>NO HAY BLOGS QUE RESPONDAN A ESA BUSQUEDA... !!!</h1>
+
+
+                           <img class="img-fluid rounded-circle mb-3" src="{% static 'images/Emoji_pensando.png' %}" alt="..." />              
+
+
+            <form action="{% url 'buscandoBlog' %}" method="GET"> 
+
+                <br>
+                <div class="container">
+            
+                    <input type="text" name="nombre" id="nombre" placeholder="INSERTE BLOG A BUSCAR">
+            
+                    <input type="submit" value="Buscar BLOG">
+            
+                </div>
+            
+            
+            </form>
 
 
 

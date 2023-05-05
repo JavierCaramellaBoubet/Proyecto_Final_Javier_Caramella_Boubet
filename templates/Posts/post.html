@@ -32,7 +32,7 @@
     <br>
 
 
-    <a type="button" class="btn btn-light" href="{% url 'update-post' post.id%}">Modificar</a>
+    <a type="button" class="btn btn-secondary" href="{% url 'update-post' post.id%}">Modificar</a>
     <a type="button" class="btn btn-danger" href="{% url 'delete-post' post.id%}?next=/post/{{post.id}}">Borrar</a>
 
     <div>
@@ -49,7 +49,7 @@
         
             <input type="text" name="comentario"> <!-- Agrega un nombre al campo de entrada -->
         
-            <input type="submit" name="enviar" value="Comentar">
+            <input class="btn btn-outline-secondary" name="enviar" value="Comentar">
         
         </form>  
         

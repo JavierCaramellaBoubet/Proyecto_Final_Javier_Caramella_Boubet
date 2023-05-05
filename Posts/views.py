@@ -57,23 +57,20 @@ def updatePost(request,pk):
 
 def post_detail(request,post_id):
     post= Post.objects.get(id=post_id)
-
     comments= post.comments.filter(active=True)
 
-    if request.method == 'POST':     #Esto significa que el usuario hizo o está haciendo un comentario
-        form= CommentForm(request.POST)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
 
         if form.is_valid():
-            new_form= form.save(commit=False) #Para guardar el Formulario cuando el usuario hace click y no cuando está escribiendo. 
-            new_form.post= post
-            new_form.save()
+            new_comment = form.save(commit=False)
+            new_comment.post = post
+            new_comment.save()
             return HttpResponseRedirect("")
-        else:
-            form= CommentForm
+    else:
+        form = CommentForm()
 
-
-    #return render(request,'post.html', {'post':post, 'comments':comments, 'form':form})
-    return render(request,'Post/post_detail.html', {'post':post, 'comments':comments, 'form':form})     
+    return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'form': form})  
 
 
 
