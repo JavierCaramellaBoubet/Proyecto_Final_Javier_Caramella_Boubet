@@ -37,5 +37,7 @@ urlpatterns = [
     path('editarPerfil/', editarPerfil, name='editarPerfil'),
     path('agregarAvatar/', agregarAvatar, name='agregarAvatar')
     
+    path('avatar/', include('avatar.urls')),
+    
     
 ]

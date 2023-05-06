@@ -27,7 +27,7 @@ def post(request, pk):
     return render(request, 'Posts/post.html',context)
 
 
-@login_required
+@login_required(login_url='login')
 def formulario(request):
     form = PostForm()
     if request.method == 'POST':
@@ -40,7 +40,7 @@ def formulario(request):
     return render(request, 'Posts/form_post.html', context)
 
 
-@login_required
+@login_required(login_url='login')
 def deletePost (request,pk):
     post = Post.objects.get(id=pk)
     if request.method == 'POST':
@@ -52,8 +52,10 @@ def deletePost (request,pk):
     return render(request,'delete_template.html', context)
 
 
-@login_required
+
+@login_required(login_url='login')
 def updatePost(request,pk):
+
     post = Post.objects.get(id=pk)
     form = PostForm(instance=post)
     update = 1
@@ -65,10 +67,11 @@ def updatePost(request,pk):
 
     context = {"form":form, "update":update}
     return render(request,'Posts/form_post.html', context)
+    
 
 ###########################################################################
 
-@login_required
+@login_required(login_url='login')
 def post_detail(request, pk):
     
     if request.method == 'POST':

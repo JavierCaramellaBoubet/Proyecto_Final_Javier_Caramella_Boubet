@@ -3,6 +3,24 @@ from django import forms
 from django.contrib.auth.forms import  UserCreationForm
 from django.contrib.auth.models import User
 
+from django import forms
+from avatar.forms import AvatarForm
+from .models import User
+
+
+
+class AvatarForm(forms.Form):
+    imagen=forms.ImageField(label="Imagen")
+
+
+class ProfileForm(forms.ModelForm):
+    avatar = AvatarForm()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'avatar']
+
+
 
 
 class RegistroUsuarioForm(UserCreationForm):
@@ -32,5 +50,3 @@ class UserEditForm(UserCreationForm):
 
 
 
-class AvatarForm(forms.Form):
-    imagen=forms.ImageField(label="Imagen")
