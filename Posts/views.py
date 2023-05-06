@@ -13,17 +13,19 @@ from .forms import *
 # Create your views here.
 
 def home(request):
-    posts = Post.objects.all() 
+    posts = Post.objects.all()
+  
     context = {'posts':posts}
     return render(request, 'Posts/posts_page.html', context)   #El context contiene las variables que le enviaremos a TEMPLATES
 
 def post(request, pk):
     post = Post.objects.get(id=pk)
-    context={'post':post}
+    comentario = Comment.objects.filter(post_id = pk)
+    context={'post':post,'comentario':comentario}
     return render(request, 'Posts/post.html',context)
 
 
-#@login_required
+@login_required
 def formulario(request):
     form = PostForm()
     if request.method == 'POST':
@@ -36,7 +38,7 @@ def formulario(request):
     return render(request, 'Posts/form_post.html', context)
 
 
-#@login_required
+@login_required
 def deletePost (request,pk):
     post = Post.objects.get(id=pk)
     if request.method == 'POST':
@@ -48,7 +50,7 @@ def deletePost (request,pk):
     return render(request,'delete_template.html', context)
 
 
-#@login_required
+@login_required
 def updatePost(request,pk):
     post = Post.objects.get(id=pk)
     form = PostForm(instance=post)
@@ -64,22 +66,18 @@ def updatePost(request,pk):
 
 ###########################################################################
 
-#@login_required
-def post_detail(request, post_id):
-    post = Post.objects.get(id=post_id)
-    comments = post.comments.filter(active=True)
-
+@login_required
+def post_detail(request, pk):
+    
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            new_comment = form.save(commit=False)
-            new_comment.post = post
-            new_comment.save()
-            return HttpResponseRedirect("")
+            form.save()
+            return redirect('post', pk=pk)
     else:
         form = CommentForm() # asignar una instancia del formulario vacío
 
-    return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'form': form})
+    return render(request, 'Posts/post_detail.html', {'form': form})
 
 
 

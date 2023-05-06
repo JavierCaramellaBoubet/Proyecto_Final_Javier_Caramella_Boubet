@@ -166,5 +166,5 @@ CKEDITOR_CONFIGS = {
 }
 
 
-LOGIN_URL='/templates/Account/login.html/'
+LOGIN_URL='/templates/Account/main.html/'
 

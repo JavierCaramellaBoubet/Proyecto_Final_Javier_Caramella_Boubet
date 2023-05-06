@@ -16,15 +16,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin #para vistas basadas e
 
 
     
-def obtenerAvatar(request):
-
-    avatares=Avatar.objects.filter(user=request.user.id)
-    if len(avatares)!=0:
-        return avatares[0].imagen.url
-    else:
-        return "/media/avatars/avatar_por_defecto.png"
-
-
 
 def inicio(request):
     return HttpResponse("Bienvenido a la pagina principal")
@@ -104,7 +95,7 @@ def register(request):   # ESTE ES UN FORMULARIO BASICO POR DEFECTO
 
 #######################################################################################################################
 
-#@login_required
+@login_required
 def editarPerfil(request):
     usuario=request.user
 
@@ -126,8 +117,19 @@ def editarPerfil(request):
         return render(request, "Account/editarPerfil.html", {"form": form, "nombreusuario":usuario.username})
     
 
+##########################################################################################################################
 
-#@login_required
+def obtenerAvatar(request):
+
+    avatares=Avatar.objects.filter(user=request.user.id)
+    if len(avatares)!=0:
+        return avatares[0].imagen.url
+    else:
+        return "/avatars/avatar_por_defecto.png"
+
+
+
+@login_required
 def agregarAvatar(request):
     if request.method=="POST":
         form=AvatarForm(request.POST, request.FILES)
@@ -144,4 +146,6 @@ def agregarAvatar(request):
     else:
         form=AvatarForm()
         return render(request, "Account/agregarAvatar.html", {"form": form, "usuario": request.user, "avatar":obtenerAvatar(request)})
+
+
 

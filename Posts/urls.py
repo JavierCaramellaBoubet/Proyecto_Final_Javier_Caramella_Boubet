@@ -5,6 +5,7 @@ from .views import *
 urlpatterns = [
     path('', views.home, name="home"),
     path('post/<str:pk>',views.post, name="post"),
+    path('detail_post/<str:pk>', views.post_detail, name='detail_post'),
     path('form_post/', views.formulario, name="form_post"),
     path('delete-post/<str:pk>/', views.deletePost, name="delete-post"),    
     path('update-post/<str:pk>/', views.updatePost, name="update-post"),
@@ -15,8 +16,7 @@ urlpatterns = [
     path('buscandoBlog/', buscandoBlog, name="buscandoBlog"),
 
     path('search/', search, name="search"),
-
-   
+  
 
 
     
