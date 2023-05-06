@@ -8,7 +8,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     subtitulo = models.CharField(max_length=200, null=True, blank= True)
     description = RichTextUploadingField(null=True, blank= True)
-    imagen_portada = models.ImageField(null=True, blank=True, default = 'default-image.png')
+    imagen_portada = models.ImageField(null=True, blank=True, default ="/default-image.png")
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False) #Para asignar un ID aleatorio
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
@@ -30,12 +30,12 @@ class Comment(models.Model):
     email = models.EmailField() 
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     content= models.TextField()
-    active= models.BooleanField(default=False)
+    #active= models.BooleanField(default=False)
 
     def __str__(self):        
         #texto = "{0} ({1})"        
         #return texto.format(self.name,self.content)
     
-        return f"Comentario de: {self.name} , {self.content}" 
+        return f"Comentario de: {self.name} , {self.content} , {self.fecha_creacion}" 
    
 

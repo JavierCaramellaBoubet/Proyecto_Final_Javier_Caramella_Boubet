@@ -1,15 +1,14 @@
-
-<!-- ESTE HTML NO LO ESTAOY USANDO -->
-
-
 {% extends 'main.html'%}
+
 {% load static %}
+
+{% load crispy_forms_tags %}
 
 {% block title %} COMENTANDO {% endblock %}
 
 {% block content %}
 
-    <div>
+    <div style= "margin: 50px; padding-right: 500px; margin-left:90px">
 
         <form method="post" action=""> 
             
@@ -19,21 +18,23 @@
             <input type="submit" name="enviar" value="Comentar">
         
         </form> 
+    </div>    
         
         <tbody>
         
             {% for comentario in comments %}
         
-            <p> {{ comentario.name }} </p>
-            <p> {{ comentario.content }} </p>
-        
+            <div style="margin:50px">
+
+            <h4 style="font-family:courier"> {{ comentario.name }} </h4> <p style="font-family:courier">  {{ comentario.content }} </p>
+            </div>
         
             {% endfor %}
         
         </tbody>
 
 
-    </div>
+
 
 
 {% endblock content %}

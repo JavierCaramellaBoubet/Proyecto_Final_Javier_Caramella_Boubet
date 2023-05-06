@@ -49,7 +49,7 @@ def login_request(request):
 
             if usuario is not None:
                 login(request, usuario)
-                return render(request, "Account/inicio.html", {"mensaje": f"Usuario {usu} logueado correctamente"})
+                return render(request, "Account/inicio.html", {"mensaje": f"Usuario: {usu} logueado correctamente"})
             else:
                 return render(request, "Account/login.html", {"form": form, "mensaje": "Usuario o contraseña incorrectos"})
         else:
@@ -68,13 +68,15 @@ def register(request):
         if form.is_valid():
             username= form.cleaned_data.get("username")
             form.save()
-            return render(request, "Account/inicio.html", {"mensaje":f"Usuario {username} creado correctamente"})
+            return render(request, "Account/inicio.html", {"mensaje":f"Usuario: {username} creado correctamente"})
         else:
             return render(request, "Account/register.html", {"form": form, "mensaje":"Error al crear el usuario"})
     else:
         form= RegistroUsuarioForm()
         return render(request, "Account/register.html", {"form": form})
     
+
+
 
 
 """
@@ -109,7 +111,7 @@ def editarPerfil(request):
             usuario.first_name=info["first_name"]
             usuario.last_name=info["last_name"]
             usuario.save()
-            return render(request, "Account/inicio.html", {"mensaje":f"Usuario {usuario.username} editado correctamente"})
+            return render(request, "Account/inicio.html", {"mensaje":f"Usuario: {usuario.username} editado correctamente"})
         else:
             return render(request, "Account/editarPerfil.html", {"form": form, "nombreusuario":usuario.username})
     else:
@@ -125,7 +127,7 @@ def obtenerAvatar(request):
     if len(avatares)!=0:
         return avatares[0].imagen.url
     else:
-        return "/avatars/avatar_por_defecto.png"
+        return "/media/avatars/avatar_por_defecto.png"
 
 
 

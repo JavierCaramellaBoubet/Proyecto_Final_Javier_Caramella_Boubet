@@ -32,13 +32,16 @@
     <br>
 
     
-
+  
     <a type="button" class="btn btn-secondary" href="{% url 'update-post' post.id%}">Modificar</a>
     <a type="button" class="btn btn-danger" href="{% url 'delete-post' post.id%}?next=/post/{{post.id}}">Borrar</a>
     <br>
     <br>
-    <a href="{% url 'detail_post' post.id %}">Comentar</a>
-    
+   
+    <a type="button" class="btn btn-primary" href="{% url 'detail_post' post.id %}">Comentar</a>
+    <br>
+    <br>
+      
    
     <div>
 
@@ -46,10 +49,11 @@
         <tbody>
         
             {% for comentario in comentario %}
-        
-            <p> Usuario:{{ comentario.name }} | Comentario:{{ comentario.content }} </p>
+
+          <div style="margin:50px; padding-right:80px; margin-top:60px">
+                || Usuario: {{ comentario.name }} | Fecha: {{ comentario.fecha_creacion }} || <p style="font-family:courier">Comentario: {{ comentario.content }} </p></p>
          
-        
+          </div> 
         
             {% endfor %}
         

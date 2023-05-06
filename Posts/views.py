@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostForm, CommentForm
+from django.db import models
 
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect 
@@ -21,7 +22,8 @@ def home(request):
 def post(request, pk):
     post = Post.objects.get(id=pk)
     comentario = Comment.objects.filter(post_id = pk)
-    context={'post':post,'comentario':comentario}
+    fecha_creacion = models.DateTimeField(auto_now_add=True) ###
+    context={'post':post,'comentario':comentario,'fecha_creacion':fecha_creacion}
     return render(request, 'Posts/post.html',context)
 
 

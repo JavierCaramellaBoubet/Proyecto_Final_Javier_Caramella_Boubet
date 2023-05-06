@@ -20,18 +20,20 @@ Including another URLconf
 from django.urls import path
 from .views import *
 
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LogoutView,LoginView
 
 
 urlpatterns = [
     
     path("", inicioApp, name="inicioApp"),
     
-
     path("login/", login_request, name="login"),
+    #path("login/", LoginView.as_view(template_name="Account/login.html"), name="login"),
+    #path("login/", login_request(template_name="Account/login.html"), name="login"),
     path("register/", register, name="register"),
-    #path('logout/', LogoutView.as_view(template_name="Account/logout.html"), name='logout'),
-    path('logout/', LogoutView.as_view(template_name="Posts/posts_page.html"), name='logout'),
+    path('logout/', LogoutView.as_view(template_name="Account/logout.html"), name='logout'),
+    #path('logout/', LogoutView.as_view(template_name="Posts/posts_page.html"), name='logout'),
+    #path('logout/', LogoutView.as_view(), name='logout'),
     path('editarPerfil/', editarPerfil, name='editarPerfil'),
     path('agregarAvatar/', agregarAvatar, name='agregarAvatar')
     
